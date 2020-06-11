@@ -16,29 +16,83 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `Customer`
+-- Table structure for table `Meteo`
 --
 
-DROP TABLE IF EXISTS `Customer`;
+DROP TABLE IF EXISTS `Meteo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `Customer` (
-  `ID_Customer` int unsigned NOT NULL AUTO_INCREMENT,
-  `Pseudo` varchar(30) NOT NULL,
-  `Email` varchar(128) DEFAULT NULL,
-  `Hash` varchar(50) DEFAULT NULL,
-  `Salt` text,
-  PRIMARY KEY (`ID_Customer`)
+CREATE TABLE `Meteo` (
+  `ID_Temps` int unsigned NOT NULL AUTO_INCREMENT,
+  `Temps` text,
+  `Description` text,
+  `Temperature` float DEFAULT NULL,
+  `Temp_Ressentie` float DEFAULT NULL,
+  `Humidite` float DEFAULT NULL,
+  `Nuages` float DEFAULT NULL,
+  `ID_Ville` int unsigned DEFAULT NULL,
+  PRIMARY KEY (`ID_Temps`),
+  KEY `ID_Ville` (`ID_Ville`),
+  CONSTRAINT `Meteo_ibfk_1` FOREIGN KEY (`ID_Ville`) REFERENCES `Ville` (`ID_Ville`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Customer`
+-- Dumping data for table `Meteo`
 --
 
-LOCK TABLES `Customer` WRITE;
-/*!40000 ALTER TABLE `Customer` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Customer` ENABLE KEYS */;
+LOCK TABLES `Meteo` WRITE;
+/*!40000 ALTER TABLE `Meteo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Meteo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Pays`
+--
+
+DROP TABLE IF EXISTS `Pays`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Pays` (
+  `ID_Pays` int unsigned NOT NULL AUTO_INCREMENT,
+  `Pays` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`ID_Pays`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Pays`
+--
+
+LOCK TABLES `Pays` WRITE;
+/*!40000 ALTER TABLE `Pays` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Pays` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Ville`
+--
+
+DROP TABLE IF EXISTS `Ville`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Ville` (
+  `ID_Ville` int unsigned NOT NULL AUTO_INCREMENT,
+  `Ville` varchar(50) DEFAULT NULL,
+  `ID_Pays` int unsigned NOT NULL,
+  PRIMARY KEY (`ID_Ville`),
+  KEY `ID_Pays` (`ID_Pays`),
+  CONSTRAINT `Ville_ibfk_1` FOREIGN KEY (`ID_Pays`) REFERENCES `Pays` (`ID_Pays`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Ville`
+--
+
+LOCK TABLES `Ville` WRITE;
+/*!40000 ALTER TABLE `Ville` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Ville` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +104,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-01 15:54:37
+-- Dump completed on 2020-06-11 17:02:50
