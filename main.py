@@ -15,13 +15,25 @@ try:
 except Exception as e:
     api = "Error"
 
-weather = json.dumps(api["weather"])
-print(weather)
+meteo = json.dumps(api["weather"])
+print(meteo)
 
-main = json.dumps(api["main"])
-print(main)
+#temps = json.dumps(api["weather"]["main"])
+#print(temps)
 
-clouds = json.dumps(api["clouds"])
+#description = json.dumps(api["coord"]["weather"]["description"])
+#print(description)
+
+temp = json.dumps(api["main"]["temp"])
+print(temp)
+
+rtemp = json.dumps(api["main"]["feels_like"])
+print(rtemp)
+
+humidity = json.dumps(api["main"]["humidity"])
+print(humidity)
+
+clouds = json.dumps(api["clouds"]["all"])
 print(clouds)
 
 country = json.dumps(api["sys"]["country"])
@@ -29,8 +41,6 @@ print(country)
 
 city = json.dumps(api["name"])
 print(city)
-
-
 
 myLabel1 = Label(root, text=api["weather"], wraplength=580, bg='cyan')
 myLabel2 = Label(root, text=api["main"], wraplength=580, bg='cyan')
