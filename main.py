@@ -18,11 +18,11 @@ except Exception as e:
 meteo = json.dumps(api["weather"])
 print(meteo)
 
-#temps = json.dumps(api["weather"]["main"])
-#print(temps)
+temps = json.dumps(api["weather"][0]["main"])
+print(temps)
 
-#description = json.dumps(api["coord"]["weather"]["description"])
-#print(description)
+description = json.dumps(api["weather"][0]["description"])
+print(description)
 
 temp = json.dumps(api["main"]["temp"])
 print(temp)
