@@ -75,8 +75,8 @@ cursor = mariadb_connection.cursor()
 cursor.execute("SET sql_mode = '' ")
 
 sqlvalues1 = ("INSERT INTO meteo" 
-                "( Temps, Description, Temperature, Temp_Ressentie, Humidite, Nuages, Date)" 
-                "VALUES(%(Temps)s,%(Description)s,%(Temperature)s,%(Temp_Ressentie)s,%(Humidite)s,%(Nuages)s,%(Date)s)")
+                "( Temps, Description, Temperature, Temp_Ressentie, Humidite, Nuages, Date, ID_Ville)" 
+                "VALUES(%(Temps)s,%(Description)s,%(Temperature)s,%(Temp_Ressentie)s,%(Humidite)s,%(Nuages)s,%(Date)s,%(ID_Ville)s)")
 sqlvalue1 = {
     'Temps':temps,
     'Description':description,
@@ -85,6 +85,7 @@ sqlvalue1 = {
     'Humidite':humidity,
     'Nuages':clouds,
     'Date': date,
+    'ID_Ville':'Humidite'
     }
 cursor.execute(sqlvalues1,sqlvalue1)
 mariadb_connection.commit()
@@ -100,8 +101,8 @@ cursor.execute(sqlvalues2,sqlvalue2)
 mariadb_connection.commit()
 
 sqlvalues3 = ("INSERT INTO ville" 
-                "(ID_Ville,Ville)" 
-                "VALUES(%(ID_Ville)s,%(Ville)s)")
+                "(Ville)" 
+                "VALUES(%(Ville)s) ON DUPLICATE KEY UPDATE ID_Ville = ID_Ville")
 sqlvalue3={
     'ID_Ville':city_id,
     'Ville':city,
