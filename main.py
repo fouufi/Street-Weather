@@ -4,6 +4,8 @@ import json
 from PIL import Image, ImageTk
 import mysql.connector as mariadb
 from mysql.connector import errorcode
+from datetime import datetime
+
 
 root = Tk()
 root.title('Street Weather')
@@ -47,6 +49,8 @@ print(city)
 city_id = json.dumps(api["id"])
 print(city_id)
 
+date = (datetime.now())
+
 myLabel1 = Label(root, text=api["weather"], wraplength=580, bg='cyan')
 myLabel2 = Label(root, text=api["main"], wraplength=580, bg='cyan')
 myLabel3 = Label(root, text=api["clouds"], wraplength=580, bg='cyan')
@@ -73,13 +77,15 @@ sqlvalue1 = {
     'Temp_Ressentie':rtemp,
     'Humidite':humidity,
     'Nuages':clouds,
+    'Date': date,
     }
 cursor.execute(sqlvalues1,sqlvalue1)
 mariadb_connection.commit()
 
+
 sqlvalues2 = ("INSERT INTO pays" 
                 "(Pays)" 
-                "VALUES(%(Pays)s)")
+                "VALUES(%(Pays)s) ON DUPLICATE KEY UPDATE ID_Pays = ID_Pays+1")
 sqlvalue2={
     'Pays':country,
     }
@@ -95,6 +101,9 @@ sqlvalue3={
     }
 cursor.execute(sqlvalues3,sqlvalue3)
 mariadb_connection.commit()
+
+
+
 
 root.mainloop()
 
