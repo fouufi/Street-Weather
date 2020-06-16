@@ -50,6 +50,7 @@ city_id = json.dumps(api["id"])
 print(city_id)
 
 date = (datetime.now())
+print(str(date))
 
 myLabel1 = Label(root, text=api["weather"], wraplength=580, bg='cyan')
 myLabel2 = Label(root, text=api["main"], wraplength=580, bg='cyan')
@@ -68,8 +69,8 @@ cursor = mariadb_connection.cursor()
 cursor.execute("SET sql_mode = '' ")
 
 sqlvalues1 = ("INSERT INTO meteo" 
-                "( Temps, Description, Temperature, Temp_Ressentie, Humidite, Nuages)" 
-                "VALUES(%(Temps)s,%(Description)s,%(Temperature)s,%(Temp_Ressentie)s,%(Humidite)s,%(Nuages)s)")
+                "( Temps, Description, Temperature, Temp_Ressentie, Humidite, Nuages, Date)" 
+                "VALUES(%(Temps)s,%(Description)s,%(Temperature)s,%(Temp_Ressentie)s,%(Humidite)s,%(Nuages)s,%(Date)s)")
 sqlvalue1 = {
     'Temps':temps,
     'Description':description,
