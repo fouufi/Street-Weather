@@ -35,36 +35,49 @@ class Graph:
     
     def get_entry(self):
         self.ville = self.E.get()
-        print (self.ville)
+        print ("Ville entrée : ", self.ville)
         self.get_info()
     
     def get_info(self):
-        self.req_getVille = "SELECT Ville FROM Ville WHERE Ville = %s"
+        #Stockage nom ville
+        self.req_getVille = "SELECT Ville FROM ville WHERE Ville = %s"
         cursor.execute(self.req_getVille, (self.ville,)) #Recherche du nom de la ville dans la bdd
-        self.Ville = cursor.fetchall() #Stockage du nom de la ville
-        print ('La ville demandée est bien présente dans la bdd : ', self.Ville)
+        self.Ville = cursor.fetchall()
+        for row in self.Ville:
+            self.Ville = row[0]
+            print ('La ville demandée est bien présente dans la bdd : ', self.Ville)
 
-#Récupération des données météo
-#req_getVille = "SELECT Ville FROM Ville WHERE Ville = %s"
-#cursor.execute(req_getVille, (ville,)) #Recherche du nom de la ville dans la bdd
-#Ville = cursor.fetchall() #Stockage du nom de la ville
-#print ('La ville demandée est : ', Ville)
+        #Stockage heures enregistrées
+        self.req_getTime = "SELECT Date FROM meteo WHERE ID_Ville = %s"
+        
+        self.req_getIDVille = "SELECT ID_Ville FROM ville WHERE Ville = %s" #Récupération de l'id
+        cursor.execute(self.req_getIDVille, (self.ville,)) #Execution de la requete
+        self.ID_Ville = cursor.fetchall()
+        for row in self.ID_Ville:
+            self.ID_Ville = row[0]
+            print ("ID de la Ville est : ", self.ID_Ville)
 
-#req_getTime = "SELECT Time FROM Meteo WHERE ID_Ville = %s" #Modif bdd à faire pour stocker l'heure
-#req_getTemps = "SELECT Temps FROM Meteo WHERE ID_Ville = %s"
-#req_getTemperature = "SELECT Temperature FROM Meteo WHERE ID_Ville = %s"
+
+        cursor.execute(self.req_getTime, (self.ID_Ville,)) #Récupération de l'heure de l'enregistrement
+        self.Time = cursor.fetchall()
+        for row in self.Time:
+            print (row)
+        
+        #Stockage des températures observées
+        req_getTemperature = "SELECT Temperature FROM meteo WHERE ID_Ville = %s"
 
 
-#Creation du graphe
-#x=[5,8,10]
-#y=[12,16,6]
-#plt.plot(x,y)
-#plt.title("info")
-#plt.ylabel("Y axis")
-#plt.xlabel("X axis")
-#plt.show()
+        #Creation du graphe
+        #x=[5,8,10]
+        #y=[12,16,6]
+        #plt.plot(x,y)
+        #plt.title("info")
+        #plt.ylabel("Y axis")
+        #plt.xlabel("X axis")
+        #plt.show()
 
-graph = Graph(root)
+
+graph = Graph(root) #Création instance
 root.mainloop()
 
 #Fermeture de la connexion à la bdd
