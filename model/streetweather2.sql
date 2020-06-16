@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `meteo` (
   PRIMARY KEY (`ID_Temps`),
   KEY `ID_Ville` (`ID_Ville`),
   CONSTRAINT `Meteo_ibfk_1` FOREIGN KEY (`ID_Ville`) REFERENCES `ville` (`ID_Ville`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
 -- Les données exportées n'étaient pas sélectionnées.
 
