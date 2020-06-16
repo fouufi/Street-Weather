@@ -28,10 +28,16 @@ print(temps)
 description = json.dumps(api["weather"][0]["description"])
 print(description)
 
-temp = json.dumps(api["main"]["temp"])
+ttemp = json.dumps(api["main"]["temp"])
+ftemp = float(ttemp)
+ftemp = ftemp - 273
+temp = str(ftemp)
 print(temp)
 
-rtemp = json.dumps(api["main"]["feels_like"])
+trtemp = json.dumps(api["main"]["feels_like"])
+frtemp = float( trtemp)
+frtemp -= 273
+rtemp = str(frtemp)
 print(rtemp)
 
 humidity = json.dumps(api["main"]["humidity"])
