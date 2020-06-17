@@ -44,8 +44,9 @@ class Graph:
         cursor.execute(self.req_getVille, (self.ville,)) #Recherche du nom de la ville dans la bdd
         self.Ville = cursor.fetchall()
         for row in self.Ville:
-            self.Ville = row[0]
-            print ('La ville demandée est bien présente dans la bdd : ', self.Ville)
+            if row[0] != NULL:
+                self.Ville = row[0]
+                print ('La ville demandée est bien présente dans la bdd : ', self.Ville)
 
         #Stockage heures enregistrées
         self.req_getTime = "SELECT Date FROM meteo WHERE ID_Ville = %s"
