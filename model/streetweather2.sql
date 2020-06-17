@@ -32,7 +32,13 @@ CREATE TABLE IF NOT EXISTS `meteo` (
   CONSTRAINT `Meteo_ibfk_1` FOREIGN KEY (`ID_Ville`) REFERENCES `ville` (`ID_Ville`)
 ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
--- Les données exportées n'étaient pas sélectionnées.
+-- Listage des données de la table streetweather.meteo : ~2 rows (environ)
+DELETE FROM `meteo`;
+/*!40000 ALTER TABLE `meteo` DISABLE KEYS */;
+INSERT INTO `meteo` (`ID_Temps`, `Temps`, `Description`, `Temperature`, `Temp_Ressentie`, `Humidite`, `Nuages`, `Date`, `ID_Ville`) VALUES
+	(32, '"Clouds"', '"few clouds"', 18.3, 15.05, 63, 20, '2020-06-16 20:22:49', 0),
+	(33, '"Clouds"', '"few clouds"', 18.3, 15.05, 63, 20, '2020-06-16 20:23:50', 0);
+/*!40000 ALTER TABLE `meteo` ENABLE KEYS */;
 
 -- Listage de la structure de la table streetweather. pays
 CREATE TABLE IF NOT EXISTS `pays` (
@@ -41,7 +47,12 @@ CREATE TABLE IF NOT EXISTS `pays` (
   PRIMARY KEY (`ID_Pays`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Les données exportées n'étaient pas sélectionnées.
+-- Listage des données de la table streetweather.pays : ~1 rows (environ)
+DELETE FROM `pays`;
+/*!40000 ALTER TABLE `pays` DISABLE KEYS */;
+INSERT INTO `pays` (`ID_Pays`, `Pays`) VALUES
+	(1, '"FR"');
+/*!40000 ALTER TABLE `pays` ENABLE KEYS */;
 
 -- Listage de la structure de la table streetweather. ville
 CREATE TABLE IF NOT EXISTS `ville` (
@@ -53,7 +64,12 @@ CREATE TABLE IF NOT EXISTS `ville` (
   CONSTRAINT `Ville_ibfk_1` FOREIGN KEY (`ID_Pays`) REFERENCES `pays` (`ID_Pays`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Les données exportées n'étaient pas sélectionnées.
+-- Listage des données de la table streetweather.ville : ~1 rows (environ)
+DELETE FROM `ville`;
+/*!40000 ALTER TABLE `ville` DISABLE KEYS */;
+INSERT INTO `ville` (`ID_Ville`, `Ville`, `ID_Pays`) VALUES
+	(0, '"Nantes"', 0);
+/*!40000 ALTER TABLE `ville` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
