@@ -5,11 +5,9 @@ from PIL import Image, ImageTk
 import mysql.connector as mariadb
 from mysql.connector import errorcode
 from datetime import datetime
+import sys
 
-
-root = Tk()
-root.title('Street Weather')
-root.geometry("640x380")
+#--------------------------------------------------------------
 
 api_key = "http://api.openweathermap.org/data/2.5/weather?id=2990969&appid=4275cf39840e13bd2503187dce72cbab"
 api_request = requests.get(api_key)
@@ -58,17 +56,26 @@ print(city_id)
 date = (datetime.now())
 print(str(date))
 
-myLabel1 = Label(root, text=api["weather"], wraplength=580, bg='cyan')
-myLabel2 = Label(root, text=api["main"], wraplength=580, bg='cyan')
-myLabel3 = Label(root, text=api["clouds"], wraplength=580, bg='cyan')
-myLabel4 = Label(root, text=api["sys"], wraplength=580, bg='cyan')
-myLabel5 = Label(root, text=api["name"], wraplength=580, bg='cyan')
+#--------------------------------------------------------------
 
-myLabel1.pack()
-myLabel2.pack()
-myLabel3.pack()
-myLabel4.pack()
-myLabel5.pack()
+root = Tk()
+root.title('Street Weather')
+root.geometry("640x380")
+
+hi_there = Button(root)
+hi_there["text"] = "Pour voir le résultat\n(clique ici)"
+#hi_there["command"] = say_hi
+hi_there.pack(side="top")
+quit = Button(root, text="QUIT", fg="red")#,command=destroy)
+quit.pack(side="bottom")
+
+myLabel1 = Label(root, text=api["weather"], wraplength=580, bg='cyan').pack()
+myLabel2 = Label(root, text=api["main"], wraplength=580, bg='cyan').pack()
+myLabel3 = Label(root, text=api["clouds"], wraplength=580, bg='cyan').pack()
+myLabel4 = Label(root, text=api["sys"], wraplength=580, bg='cyan').pack()
+myLabel5 = Label(root, text=api["name"], wraplength=580, bg='cyan').pack()
+
+#--------------------------------------------------------------
 
 mariadb_connection = mariadb.connect(user='root', password='1234', database='streetweather')
 cursor = mariadb_connection.cursor()
@@ -109,8 +116,6 @@ sqlvalue3={
     }
 cursor.execute(sqlvalues3,sqlvalue3)
 mariadb_connection.commit()
-
-
 
 
 root.mainloop()
