@@ -42,12 +42,12 @@ INSERT INTO `meteo` (`ID_Temps`, `Temps`, `Description`, `Temperature`, `Temp_Re
 
 -- Listage de la structure de la table streetweather. pays
 CREATE TABLE IF NOT EXISTS `pays` (
-  `ID_Pays` int(10) unsigned NOT NULL,
+  `ID_Pays` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Pays` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID_Pays`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Listage des données de la table streetweather.pays : ~1 rows (environ)
+-- Listage des données de la table streetweather.pays : ~0 rows (environ)
 DELETE FROM `pays`;
 /*!40000 ALTER TABLE `pays` DISABLE KEYS */;
 INSERT INTO `pays` (`ID_Pays`, `Pays`) VALUES
