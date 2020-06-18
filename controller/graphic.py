@@ -15,9 +15,5 @@ try:
             password='P@ssw0rd123',
             database='streetweather'
             )
-except mysql.connector.Error as err:
+except mariadb.Error as err:
     print("Error occured (BDD Connexion) : {}".format(err))
-
-#Creation du curseur
-cursor = mariadb_connection.cursor()
-cursor.execute("SET sql_mode = '' ")

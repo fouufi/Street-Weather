@@ -6,6 +6,7 @@ import mysql.connector as mariadb
 from mysql.connector import errorcode
 from datetime import datetime
 import sys
+from controller import graphic 
 
 #--------------------------------------------------------------
 
