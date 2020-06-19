@@ -44,26 +44,29 @@ class Graph:
         cursor.execute(self.req_getVille, (self.ville,)) #Recherche du nom de la ville dans la bdd
         self.Ville = cursor.fetchall()
         for row in self.Ville:
-            if row[0] != NULL:
                 self.Ville = row[0]
                 print ('La ville demandée est bien présente dans la bdd : ', self.Ville)
 
         #Stockage heures enregistrées
-        self.req_getTime = "SELECT Date FROM meteo WHERE ID_Ville = %s"
+        self.req_getTime = "SELECT Date FROM meteo WHERE ID_Ville = %s "#ORDER BY Date DESC"
         
+        #Récupération de l'ID correspondant
         self.req_getIDVille = "SELECT ID_Ville FROM ville WHERE Ville = %s" #Récupération de l'id
         cursor.execute(self.req_getIDVille, (self.ville,)) #Execution de la requete
         self.ID_Ville = cursor.fetchall()
         for row in self.ID_Ville:
             self.ID_Ville = row[0]
             print ("ID de la Ville est : ", self.ID_Ville)
-
+        #----------------------------------
 
         cursor.execute(self.req_getTime, (self.ID_Ville,)) #Récupération de l'heure de l'enregistrement
         self.Time = cursor.fetchall()
-        for row in self.Time:
-            print (row)
         
+        for row in self.Time:
+            time = row[0]
+            var = "%s:%s" % (time.hour, time.minute)
+            print (var)
+
         #Stockage des températures observées
         req_getTemperature = "SELECT Temperature FROM meteo WHERE ID_Ville = %s"
 
