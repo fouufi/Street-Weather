@@ -4,25 +4,22 @@ from mysql.connector import errorcode
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.dates as mdates
+import mysql.connector as mariadb
 
 root = Tk()
 root.title('Street Weather')
 root.geometry("640x380")
 
 #Connexion à la base de données
-try:
-    bdd = mysql.connector.connect(
-            host="localhost",
-            user="Utilisateur",
-            password="P@ssw0rd123",
-            database="streetweather"
-            )
-except mariadb.Error as err:
-    print("Error occured (BDD Connexion) : {}".format(err))
+bdd = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="",
+        database="streetweather"
+        )
 
 #Creation du curseur
 cursor = bdd.cursor()
-cursor = mariadb_connection.cursor()
 
 cursor.execute("SET sql_mode = '' ")
 
