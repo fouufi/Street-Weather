@@ -12,12 +12,12 @@ Requirements :
 In the folder Model, you can find a .sql file.
 In a terminal (Linux command) run this to import database :
 
+To access to MySQL console
 <code>
-  mysql -u root -p (just type mysql if you're using root user) -> To access to MySQL console
+  mysql -u root -p (just type mysql if you're using root user)
 </code>
-<code>
-  mysql> CREATE DATABASE streetweather; -> To create the database
-</code>
+mysql> CREATE DATABASE streetweather; -> To create the database
+
 Go back to terminal by pressing CTRL+D then type :
 <code>
   mysql -u username -p streetweather < streetweather.sql
