@@ -2,6 +2,8 @@ from tkinter import *
 import mysql.connector
 from mysql.connector import errorcode
 import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib.dates as mdates
 
 root = Tk()
 root.title('Street Weather')
@@ -63,22 +65,34 @@ class Graph:
         self.Time = cursor.fetchall()
         
         for row in self.Time:
-            time = row[0]
-            var = "%s:%s" % (time.hour, time.minute)
-            print (var)
+            self.daytime = row[0]
+            self.time = "%s:%s" % (self.daytime.hour, self.daytime.minute)
+            self.day = self.daytime.day
+            print ("jour : %s", self.day)
+            print ("heure : %s", self.time)
 
         #Stockage des températures observées
-        req_getTemperature = "SELECT Temperature FROM meteo WHERE ID_Ville = %s"
+        self.req_getTemperature = "SELECT Temperature FROM meteo WHERE ID_Ville = %s"
+        
+        #Récupération de l'ID correspondant
+        cursor.execute(self.req_getIDVille, (self.ville,))
+        self.ID_Ville = cursor.fetchall()
+        for row in self.ID_Ville:
+            self.ID_Ville = row[0]
+        #---------------------------------
 
+        cursor.execute(self.req_getTemperature, (self.ID_Ville,))
+        self.Temp = cursor.fetchall()
+        for row in self.Temp:
+            self.temper = row[0]
+            print (self.temper)
 
         #Creation du graphe
-        #x=[5,8,10]
-        #y=[12,16,6]
-        #plt.plot(x,y)
-        #plt.title("info")
-        #plt.ylabel("Y axis")
-        #plt.xlabel("X axis")
-        #plt.show()
+        plt.plot(self.time,self.temper)
+        plt.title("Graph of temperature in function of the time")
+        plt.ylabel("Temperature (°C)")
+        plt.xlabel("Time (hh:mm)")
+        plt.show()
 
 
 graph = Graph(root) #Création instance
