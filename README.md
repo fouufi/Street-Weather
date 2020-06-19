@@ -9,3 +9,16 @@ Requirements :
 - Have MatPlotLib installed (pip install MatPlotLib)
 - Have MariaDB installed (pip install mysql.connector)
 
+In the folder Model, you can find a .sql file.
+In a terminal (Linux command) run this to import database :
+
+<code>
+  mysql -u root -p (just type mysql if you're using root user) -> To access to MySQL console
+</code>
+<code>
+  mysql> CREATE DATABASE streetweather; -> To create the database
+</code>
+Go back to terminal by pressing CTRL+D then type :
+<code>
+  mysql -u username -p streetweather < streetweather.sql
+</code>
