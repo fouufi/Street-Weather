@@ -20,12 +20,10 @@ try:
 except mariadb.Error as err:
     print("Error occured (BDD Connexion) : {}".format(err))
 
-<<<<<<< HEAD
 #Creation du curseur
 cursor = bdd.cursor()
-=======
 cursor = mariadb_connection.cursor()
->>>>>>> 59596656b9aee73ab4b67fcafa6d92fea8b71c11
+
 cursor.execute("SET sql_mode = '' ")
 
 class Graph:
