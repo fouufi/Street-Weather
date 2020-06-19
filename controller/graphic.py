@@ -17,3 +17,6 @@ try:
             )
 except mariadb.Error as err:
     print("Error occured (BDD Connexion) : {}".format(err))
+
+cursor = mariadb_connection.cursor()
+cursor.execute("SET sql_mode = '' ")
