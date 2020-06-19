@@ -22,3 +22,10 @@ Go back to terminal by pressing CTRL+D then type :
 <code>
   mysql -u username -p streetweather < streetweather.sql
 </code>
+
+Go back to MySQL console and create new user so that the scripts work :
+mysql> CREATE USER 'Utilisateur'@'localhost' IDENTIFIED BY 'P@ssw0rd123';
+mysql> GRANT ALL PRIVILEES ON streetweather.* TO 'Utilisateur'@'localhost';
+
+Then run :
+python3 main.py
