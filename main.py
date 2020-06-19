@@ -64,11 +64,26 @@ def main():
     root.title('Street Weather')
     root.geometry("640x380")
 
+    def recherche():
+    
+        hello = Tk()
+        hello.title('Street Weather - Graph')
+        hello.geometry("640x380")
+        label = Label(hello, text="Ville à chercher")
+        label.pack()
+        E = Entry(hello, width=10)
+        E.pack()
+
+        button = Button(hello, text = "Valider", command = graphic.graph.get_entry)
+        button.pack()
+        ville = 0
+    
+
     hi_there = Button(root)
-    hi_there["text"] = "Pour voir le résultat\n(clique ici)"
-    #hi_there["command"] = say_hi
+    hi_there["text"] = "Pour voir le resultat\n(clique ici)"
+    hi_there["command"] = recherche
     hi_there.pack(side="top")
-    quit = Button(root, text="QUIT", fg="red")#,command=destroy)
+    quit = Button(root, text="QUIT", fg="red",command=root.destroy)
     quit.pack(side="bottom")
 
     myLabel1 = Label(root, text=api["weather"], wraplength=580, bg='cyan').pack()
