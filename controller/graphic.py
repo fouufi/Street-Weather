@@ -64,12 +64,12 @@ class Graph:
         cursor.execute(self.req_getTime, (self.ID_Ville,)) #Récupération de l'heure de l'enregistrement
         self.Time = cursor.fetchall()
         
-        for row in self.Time:
-            self.daytime = row[0]
-            self.time = "%s:%s" % (self.daytime.hour, self.daytime.minute)
-            self.day = self.daytime.day
-            print ("jour : %s", self.day)
-            print ("heure : %s", self.time)
+        #for row in self.Time:
+        #    self.daytime = row[0]
+        #    self.time = "%s:%s" % (self.daytime.hour, self.daytime.minute)
+        #    self.day = self.daytime.day
+        #    print ("jour : %s", self.day)
+        #    print ("heure : %s", self.time)
 
         #Stockage des températures observées
         self.req_getTemperature = "SELECT Temperature FROM meteo WHERE ID_Ville = %s"
@@ -83,15 +83,15 @@ class Graph:
 
         cursor.execute(self.req_getTemperature, (self.ID_Ville,))
         self.Temp = cursor.fetchall()
-        for row in self.Temp:
-            self.temper = row[0]
-            print (self.temper)
+        #for row in self.Temp:
+        #    self.temper = row[0]
+        #    print (self.temper)
 
         #Creation du graphe
-        plt.plot(self.time,self.temper)
+        plt.plot(self.Time,self.Temp, color = "red", linestyle = "solid")
         plt.title("Graph of temperature in function of the time")
         plt.ylabel("Temperature (°C)")
-        plt.xlabel("Time (hh:mm)")
+        plt.xlabel("Time (day hh:mm)")
         plt.show()
 
 
