@@ -78,7 +78,7 @@ myLabel5 = Label(root, text=api["name"], wraplength=580, bg='cyan').pack()
 
 #--------------------------------------------------------------
 
-mariadb_connection = mariadb.connect(user='root', password='1234', database='streetweather')
+mariadb_connection = mariadb.connect(user='Utilisateur', password='P@ssw0rd123', database='streetweather')
 cursor = mariadb_connection.cursor()
 cursor.execute("SET sql_mode = '' ")
 
